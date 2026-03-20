@@ -9,6 +9,13 @@ const MapActionBar = () => {
 
     return (
         <View style={styles.container}>
+
+            {isSettingsOpen && (
+                <View style={styles.settingsPanel}>
+                    <Text>Mettre le slider de rayon ici</Text>
+                </View>
+            )}
+
             <Pressable
                 style={{
                     opacity: isSettingsOpen ? 1 : 0.5,
@@ -59,5 +66,15 @@ const styles = StyleSheet.create({
     settings: {
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    settingsPanel: {
+        position: 'absolute',
+        bottom: '100%',
+        left: 0,
+        right: 0,
+        backgroundColor: '#D3D3D3',
+        padding: 16,
+        zIndex: 10,
+        alignItems: 'center'
+    },
 });
