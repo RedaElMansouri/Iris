@@ -61,7 +61,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#D3D3D3',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 7
+        padding: 7,
+        borderRadius: 50,
+        width: "90%"
     },
     settings: {
         justifyContent: 'center',

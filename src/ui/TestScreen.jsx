@@ -9,9 +9,6 @@ import MapActionBar from '../components/MapActionBar';
 // import { useSharedValue } from 'react-native-reanimated';
 
 
-
-
-
 const CATEGORIES = [...new Set(MOCK_EVENTS.map(e => e.category))];
 
 const TestScreen = () => {
@@ -43,7 +40,9 @@ const TestScreen = () => {
                 }}
             /> */}
         </View>
-        <MapActionBar />
+        <View style={{alignItems: 'center'}}>
+            <MapActionBar />
+        </View>
     </SafeAreaView>
   )
 }

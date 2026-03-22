@@ -1,9 +1,13 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import { useLocation } from '../../hooks/useLocation';
-import { MOCK_EVENTS } from '../../constants/mockData';
-import { colors } from '../../constants/colors';
-import { MAP_STYLE } from '../../constants/mapStyle';
+import { useLocation } from '../hooks/useLocation';
+import { MOCK_EVENTS } from '../constants/mockData';
+import { colors } from '../constants/colors';
+import { MAP_STYLE } from '../constants/mapStyle';
+import FilterButton from '../components/FilterButton'
+import MapActionBar from '../components/MapActionBar';
+
+const CATEGORIES = [...new Set(MOCK_EVENTS.map(e => e.category))];
 
 export default function MapScreen() {
   const { coords, loading } = useLocation();
@@ -18,6 +22,15 @@ export default function MapScreen() {
 
   return (
     <View style={styles.container}>
+       <View style={{ position: 'absolute', zIndex: 1, top: 50, left: 0, right: 0}}>
+          <FlatList
+              data={CATEGORIES}
+              renderItem={({item}) => <FilterButton category={item}/>}
+              keyExtractor={(item) => item}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+          />
+      </View>
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
@@ -39,6 +52,15 @@ export default function MapScreen() {
           />
         ))}
       </MapView>
+      <View style={{ 
+            position: 'absolute', 
+            bottom: 30, 
+            left: 0, 
+            right: 0, 
+            alignItems: 'center',
+            zIndex: 1}}>
+            <MapActionBar />
+        </View>
     </View>
   );
 }
